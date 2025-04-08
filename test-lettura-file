@@ -1,0 +1,44 @@
+import os
+diz_p={}
+def Read_file():
+  if os.path.isfile("tested.csv"):
+    p_file=open("tested.csv","r")
+    next(p_file) # salta la prima riga
+    for riga in p_file:
+      #print(riga)
+      riga=riga.replace("\n","")
+      lista=riga.split(",")
+      #print(lista)
+      diz_p[lista[0]]={
+        'survived': lista[1],
+        'classe': lista[2],
+        'nome': lista[3],
+        'sesso': lista[4],
+        'eta': lista[5]
+      }
+    print(diz_p)
+    p_file.close()
+  else:
+    print("Il file non esiste")
+
+def  Vis_Passeggeri():
+  for k,v in diz_p.items():
+    print(k)
+    for elemento in v:
+      print('Surivived',v[elemento])
+      print('Nome',v['nome'])
+      print('Eta',v['eta'])
+
+Read_file()
+while True:
+  print("0 - esci")
+  print("1 - Visualizzare i passeggeri")
+  print("2 - Calcolo Età Media maschi e femmine")
+  print("3 - Calcolo Età Massima")
+  print("4 - Calcolo Età Minimo")
+  scelta=int(input("Scegli cosa vuoi fare: "))
+  if scelta==0:
+    break
+  if scelta==1:
+    print("Visualizzazione passeggeri")
+    Vis_Passeggeri()
